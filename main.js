@@ -3,15 +3,15 @@ status = "";
 objects = [];
 
 function preload() {
-    audio = loadSound("alert_alarm.wav");
+    audio = loadSound("music2.mp3");
+    video = createCapture(VIDEO);
+    video.size(380, 380);
+    video.hide();
 }
 
 function setup() {
     canvas = createCanvas(380, 380);
     canvas.center();
-    video = createCapture(VIDEO);
-    video.size(380, 380);
-    video.hide();
     objectDetector = ml5.objectDetector('cocossd', modelLoaded);
     document.getElementById("status").innerHTML = "Status : Detecting Objects";
 }
@@ -39,7 +39,7 @@ function draw() {
         for (i = 0; i < objects.length; i++) {
             document.getElementById("status").innerHTML = "Status : Object Detected";
             document.getElementById("number_of_objects").innerHTML = "Person Found" + objects.length;
-            audio.stop();
+         audio.stop();
 
             fill(r, g, b);
             percent = floor(objects[i].confidence * 100);
